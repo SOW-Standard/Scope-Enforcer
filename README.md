@@ -1,6 +1,5 @@
 # Scope-Enforcer
 effective-legal-templates
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -1,6 +1,5 @@
 # Scope-Enforcer
 effective-legal-templates
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,13 +80,7 @@ effective-legal-templates
             document.getElementById('success-container').classList.remove('hidden');
         }
         
-        // --- NEW FIX: Prevent default browser submission to allow MailerLite script to execute ---
-        function preventDefaultSubmission(event) {
-            // This stops the browser from navigating to the form's 'action' URL and displaying the raw JSON.
-            event.preventDefault(); 
-            // Returning true allows the external MailerLite script to continue its own JSONP submission process.
-            return true;
-        }
+        // The custom preventDefaultSubmission function was removed to allow the MailerLite script to handle the submission itself.
     </script>
 </head>
 <body class="antialiased text-gray-800"> 
@@ -118,11 +111,10 @@ effective-legal-templates
                     
                     <!-- MailerLite Form View -->
                     <div id="form-container" class="space-y-4">
-                        <!-- CRITICAL FIX APPLIED HERE: Added onsubmit="preventDefaultSubmission(event)" -->
+                        <!-- FIX: The custom onsubmit was removed to allow MailerLite's script to execute the form submission -->
                         <form class="ml-block-form space-y-4"
                             action="https://assets.mailerlite.com/jsonp/1888149/forms/169673600738002812/subscribe"
-                            method="post"
-                            onsubmit="preventDefaultSubmission(event)">
+                            method="post">
                             
                             <!-- Email Field -->
                             <div class="ml-form-fieldRow">
@@ -255,7 +247,7 @@ effective-legal-templates
                             <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Includes clear termination clauses for non-payment.</li>
                         </ul>
                     </div>
-                    <div class="md:w-1/3 mt-6 md:mt-0 text-center">
+                    <div class="md:w-1/3 mt-6 md:mt-0 fumes text-center">
                         <!-- Placeholder Image: MSA Contract -->
                         <img src="https://placehold.co/250x150/1e40af/ffffff?text=MSA+Contract" alt="Master Service Agreement Icon" class="rounded-lg shadow-md mx-auto">
                     </div>

@@ -1,5 +1,6 @@
 # Scope-Enforcer
 effective-legal-templates
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,7 +66,7 @@ effective-legal-templates
                 extend: {
                     colors: {
                         'form-bg': '#f6f6f6',
-                        'primary-black': '#000000', // Kept for consistency, though we use blue-600 below
+                        'primary-black': '#000000',
                     },
                 }
             }
@@ -73,7 +74,7 @@ effective-legal-templates
 
 
         // --- CRITICAL MAILERLITE JAVASCRIPT HOOKS ---
-        // This function is called by the MailerLite script upon successful submission.
+        // This function is called by the MailerLite script upon successful submission (JSONP response).
         function ml_webform_success_32707272() {
             // Hide the form wrapper and show the local success message within the freebie section
             document.getElementById('form-container').classList.add('hidden');
@@ -130,8 +131,7 @@ effective-legal-templates
                         <form class="ml-block-form space-y-4"
                             action="https://assets.mailerlite.com/jsonp/1888149/forms/169673600738002812/subscribe"
                             method="post"
-                            target="_blank"
-                            onsubmit="handleSubmissionStart()">
+                            onsubmit="handleSubmissionStart()"> <!-- REMOVED target="_blank" to prevent navigation -->
                             
                             <!-- Email Field -->
                             <div class="ml-form-fieldRow">
@@ -343,9 +343,6 @@ effective-legal-templates
 
     <!-- CRITICAL: MAILERLITE SCRIPTS (Must be at the end of the body) -->
     <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
-    <script>
-        // This fetch call initializes the form listener in a real browser
-        fetch("https://assets.mailerlite.com/jsonp/1888149/forms/169673600738002812/takel")
-    </script>
+    <!-- Removed the redundant fetch call that was confusing the MailerLite script -->
 </body>
 </html>

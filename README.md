@@ -80,6 +80,14 @@ effective-legal-templates
             document.getElementById('form-container').classList.add('hidden');
             document.getElementById('success-container').classList.remove('hidden');
         }
+        
+        // --- NEW FIX: Prevent default browser submission to allow MailerLite script to execute ---
+        function preventDefaultSubmission(event) {
+            // This stops the browser from navigating to the form's 'action' URL and displaying the raw JSON.
+            event.preventDefault(); 
+            // Returning true allows the external MailerLite script to continue its own JSONP submission process.
+            return true;
+        }
     </script>
 </head>
 <body class="antialiased text-gray-800"> 
@@ -110,10 +118,11 @@ effective-legal-templates
                     
                     <!-- MailerLite Form View -->
                     <div id="form-container" class="space-y-4">
-                        <!-- CRITICAL FIX: Removed custom onsubmit handler. MailerLite script will now intercept the submission. -->
+                        <!-- CRITICAL FIX APPLIED HERE: Added onsubmit="preventDefaultSubmission(event)" -->
                         <form class="ml-block-form space-y-4"
                             action="https://assets.mailerlite.com/jsonp/1888149/forms/169673600738002812/subscribe"
-                            method="post">
+                            method="post"
+                            onsubmit="preventDefaultSubmission(event)">
                             
                             <!-- Email Field -->
                             <div class="ml-form-fieldRow">

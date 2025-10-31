@@ -42,7 +42,7 @@ effective-legal-templates
             z-index: 50;
         }
         
-        /* --- MAILERLITE LOADER STYLES --- */
+        /* --- MAILERLITE LOADER STYLES (Kept for external script use) --- */
         .ml-form-embedSubmitLoad:after {
             content: " ";
             display: block;
@@ -73,30 +73,12 @@ effective-legal-templates
         }
 
 
-        // --- CRITICAL MAILERLITE JAVASCRIPT HOOKS ---
+        // --- CRITICAL MAILERLITE JAVASCRIPT HOOK ---
         // This function is called by the MailerLite script upon successful submission (JSONP response).
         function ml_webform_success_32707272() {
             // Hide the form wrapper and show the local success message within the freebie section
             document.getElementById('form-container').classList.add('hidden');
             document.getElementById('success-container').classList.remove('hidden');
-            
-            // Ensure button state is reset for next theoretical load (good practice)
-            const submitBtn = document.querySelector('.ml-form-embedSubmit button[type="submit"]');
-            const loadingBtn = document.querySelector('.ml-form-embedSubmit .loading');
-            if (submitBtn) submitBtn.style.display = 'inline-block';
-            if (loadingBtn) loadingBtn.style.display = 'none';
-        }
-
-
-        // Custom function to handle the button state (Loading/Enabled)
-        function handleSubmissionStart() {
-            const submitBtn = document.querySelector('.ml-form-embedSubmit button[type="submit"]');
-            const loadingBtn = document.querySelector('.ml-form-embedSubmit .loading');
-            if (submitBtn && loadingBtn) {
-                submitBtn.style.display = 'none';
-                loadingBtn.style.display = 'inline-flex';
-                loadingBtn.setAttribute('disabled', 'disabled');
-            }
         }
     </script>
 </head>
@@ -128,10 +110,10 @@ effective-legal-templates
                     
                     <!-- MailerLite Form View -->
                     <div id="form-container" class="space-y-4">
+                        <!-- CRITICAL FIX: Removed custom onsubmit handler. MailerLite script will now intercept the submission. -->
                         <form class="ml-block-form space-y-4"
                             action="https://assets.mailerlite.com/jsonp/1888149/forms/169673600738002812/subscribe"
-                            method="post"
-                            onsubmit="handleSubmissionStart()"> <!-- REMOVED target="_blank" to prevent navigation -->
+                            method="post">
                             
                             <!-- Email Field -->
                             <div class="ml-form-fieldRow">
@@ -157,17 +139,13 @@ effective-legal-templates
                             <input type="hidden" name="ml-submit" value="1">
                             <input type="hidden" name="anticsrf" value="true">
                             
-                            <!-- Submit Button -->
+                            <!-- Submit Button (Now fully controlled by the MailerLite script for loading/submission) -->
                             <div class="ml-form-embedSubmit pt-1 flex flex-col items-center">
                                 <button type="submit"
                                     class="primary w-full py-3 bg-blue-600 text-white font-bold text-base rounded-lg shadow-md hover:bg-blue-700 transition hero-button focus:outline-none focus:ring-4 focus:ring-blue-600/50">
                                     Get the Free SOW Template Now
                                 </button>
-                                <!-- Loading Button -->
-                                <button disabled="disabled" style="display: none;" type="button" class="loading w-full py-3 bg-blue-600 text-white font-bold text-base rounded-lg shadow-md mt-2 flex justify-center items-center">
-                                    <div class="ml-form-embedSubmitLoad"></div>
-                                    <span class="sr-only ml-2">Loading...</span>
-                                </button>
+                                <!-- The MailerLite script will dynamically inject a loading state if needed -->
                                 <p class="text-xs text-gray-500 text-center mt-2">Zero spam. Download sent immediately to your inbox.</p>
                             </div>
                         </form>
@@ -343,6 +321,6 @@ effective-legal-templates
 
     <!-- CRITICAL: MAILERLITE SCRIPTS (Must be at the end of the body) -->
     <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
-    <!-- Removed the redundant fetch call that was confusing the MailerLite script -->
 </body>
 </html>
+

@@ -1,5 +1,6 @@
 # Scope-Enforcer
 effective-legal-templates
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,24 +41,111 @@ effective-legal-templates
             top: 0;
             z-index: 50;
         }
+
+
+        /* =============================================
+        NEW MAILERLITE FORM STYLES (Adjusted for Tailwind compatibility)
+        =============================================
+        */
+        @import url("https://assets.mlcdn.com/fonts.css?version=1761822");
         
-        /* --- MAILERLITE LOADER STYLES (Kept for external script use) --- */
+        /* LOADER */
+        .ml-form-embedSubmitLoad {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+        }
         .ml-form-embedSubmitLoad:after {
-            content: " ";
-            display: block;
-            width: 11px;
-            height: 11px;
-            margin: 1px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            border-color: #ffffff #ffffff #ffffff transparent;
-            animation: ml-form-embedSubmitLoad 1.2s linear infinite;
+          content: " ";
+          display: block;
+          width: 11px;
+          height: 11px;
+          margin: 1px;
+          border-radius: 50%;
+          border: 4px solid #fff;
+          border-color: #ffffff #ffffff #ffffff transparent;
+          animation: ml-form-embedSubmitLoad 1.2s linear infinite;
         }
         @keyframes ml-form-embedSubmitLoad {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
-        /* --- END MAILERLITE STYLES --- */
+        
+        /* Form container styling */
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper { 
+            background-color: #f6f6f6; 
+            border-radius: 4px; 
+            padding: 20px;
+            /* Ensure it respects the parent's width */
+            width: 100% !important; 
+            max-width: 100% !important;
+        } 
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper.embedForm { 
+            max-width: 100%; 
+            width: 100%; 
+        }
+
+
+        /* Text styling */
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4 { 
+            color: #000000; 
+            font-size: 24px; 
+            font-weight: 700; 
+            margin: 0 0 10px 0; 
+            text-align: left; 
+        }
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p { 
+            color: #4b5563; 
+            font-size: 16px; 
+            line-height: 1.5; 
+            margin: 0 0 15px 0; 
+            text-align: left; 
+        }
+
+
+        /* Input field styling */
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input { 
+            border-color: #cccccc; 
+            border-radius: 8px !important; 
+            padding: 12px 10px !important; 
+            box-sizing: border-box !important;
+        }
+        
+        /* Submit button styling */
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button { 
+            background-color: #1e40af !important; /* Tailwind Blue-700 */
+            border-radius: 8px !important; 
+            padding: 12px !important; 
+            font-size: 16px !important;
+            font-weight: 700 !important; 
+            width: 100% !important;
+            transition: background-color 0.2s; 
+        }
+        #mlb2-32749507.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover { 
+            background-color: #3b82f6 !important; /* Tailwind Blue-500 */
+        }
+
+
+        /* Success Message styling to match original design */
+        .ml-form-successBody { 
+            padding: 20px; 
+            text-align: center; 
+            background-color: #d1fae5; /* Green-100 */
+            border: 2px solid #10b981; /* Green-500 */
+            border-radius: 0.5rem; 
+        }
+        .ml-form-successContent h4 {
+            font-weight: 700 !important;
+            color: #065f46 !important; /* Green-700 */
+            font-size: 1.25rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        .ml-form-successContent p {
+            color: #065f46 !important; /* Green-700 */
+            font-size: 1rem !important;
+            line-height: 1.4 !important;
+        }
+        /* End New Styles */
     </style>
     <script>
         tailwind.config = {
@@ -72,27 +160,23 @@ effective-legal-templates
         }
 
 
-        // --- CRITICAL MAILERLITE JAVASCRIPT HOOK ---
-        // This function is called by the MailerLite script upon successful submission (JSONP response).
-        function ml_webform_success_32707272() {
-            // Hide the form wrapper and show the local success message within the freebie section
-            document.getElementById('form-container').classList.add('hidden');
-            document.getElementById('success-container').classList.remove('hidden');
+        // CRITICAL: New MailerLite Success Hook for form ID 32749507
+        function ml_webform_success_32749507() {
+            var $ = ml_jQuery || jQuery;
+            // Hide the form and show the success message within the freebie section
+            $('.ml-subscribe-form-32749507 .row-form').hide();
+            $('.ml-subscribe-form-32749507 .row-success').show();
         }
-        
-        // The custom preventDefaultSubmission function was removed to allow the MailerLite script to handle the submission itself.
     </script>
 </head>
 <body class="antialiased text-gray-800"> 
 
 
-    <!-- 1. CRITICAL DISCLAIMER BAR (Sticky Top) -->
     <div id="disclaimer-bar" class="bg-red-700 text-white p-2 text-center text-sm font-semibold shadow-2xl">
         ⚠️ **LEGAL DISCLAIMER:** This product provides templates, not legal advice. **CONSULT AN ATTORNEY** before use.
     </div> 
 
 
-    <!-- 2. FREE LEAD MAGNET SECTION (Top of Page) - EMAIL CAPTURE -->
     <section id="freebieForm" class="py-12 md:py-16 bg-blue-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="freebie-form-section rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center">
@@ -106,73 +190,53 @@ effective-legal-templates
                     </p>
                 </div>
                 
-                <!-- START: MAILERLITE FORM INTEGRATION -->
                 <div class="md:w-2/5 w-full">
-                    
-                    <!-- MailerLite Form View -->
-                    <div id="form-container" class="space-y-4">
-                        <!-- FIX: The custom onsubmit was removed to allow MailerLite's script to execute the form submission -->
-                        <form class="ml-block-form space-y-4"
-                            action="https://assets.mailerlite.com/jsonp/1888149/forms/169673600738002812/subscribe"
-                            method="post">
-                            
-                            <!-- Email Field -->
-                            <div class="ml-form-fieldRow">
-                                <div class="ml-field-group ml-validate-required">
-                                    <input aria-label="email" aria-required="true" type="email"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600/50"
-                                        name="fields[email]" placeholder="Your Work Email" autocomplete="email" required>
+                    <div id="mlb2-32749507" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-32749507">
+                        <div class="ml-form-align-center">
+                            <div class="ml-form-embedWrapper embedForm">
+                                <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                                    <div class="ml-form-embedContent">
+                                        <h4>The SOW Standard Free Template</h4>
+                                        <p>Signup and get your 100% Free Template to stay ahead of any lawsuit that can and will happen on your journey of success in freelance or small agency business.</p>
+                                    </div>
+                                    <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1888149/forms/169746436193257031/subscribe" data-code="" method="post" target="_blank">
+                                        <div class="ml-form-formContent">
+                                            <div class="ml-form-fieldRow ml-last-item">
+                                                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                                    <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Your Email Here" autocomplete="email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="ml-submit" value="1">
+                                        <div class="ml-form-embedSubmit">
+                                            <button type="submit" class="primary">Click Here For Free Template</button>
+                                            <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                                <div class="ml-form-embedSubmitLoad"></div>
+                                                <span class="sr-only">Loading...</span>
+                                            </button>
+                                            <p class="text-xs text-gray-500 text-center mt-2">Zero spam. Download sent immediately to your inbox.</p>
+                                        </div>
+                                        <input type="hidden" name="anticsrf" value="true">
+                                    </form>
+                                </div>
+                                <div class="ml-form-successBody row-success" style="display: none">
+                                    <div class="ml-form-successContent">
+                                        <h4>Success! Check Your Inbox!</h4>
+                                        <p>The template is on its way. Please check your spam folder if you don't see it!</p>
+                                        <svg class="w-8 h-8 mx-auto mt-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <!-- Privacy Policy Checkbox -->
-                            <div class="ml-form-checkboxRow">
-                                <label class="flex items-start text-sm cursor-pointer">
-                                    <input type="checkbox" class="mt-1 mr-2" required>
-                                    <span class="text-xs text-gray-700 font-semibold leading-normal">
-                                        I agree to receive email updates and promotional materials.
-                                    </span>
-                                </label>
-                            </div>
-
-
-                            <!-- CRITICAL: MAILERLITE HIDDEN INPUTS -->
-                            <input type="hidden" name="ml-submit" value="1">
-                            <input type="hidden" name="anticsrf" value="true">
-                            
-                            <!-- Submit Button (Now fully controlled by the MailerLite script for loading/submission) -->
-                            <div class="ml-form-embedSubmit pt-1 flex flex-col items-center">
-                                <button type="submit"
-                                    class="primary w-full py-3 bg-blue-600 text-white font-bold text-base rounded-lg shadow-md hover:bg-blue-700 transition hero-button focus:outline-none focus:ring-4 focus:ring-blue-600/50">
-                                    Get the Free SOW Template Now
-                                </button>
-                                <!-- The MailerLite script will dynamically inject a loading state if needed -->
-                                <p class="text-xs text-gray-500 text-center mt-2">Zero spam. Download sent immediately to your inbox.</p>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-
-
-                    <!-- Success Message View -->
-                    <div id="success-container" class="hidden text-center p-4 bg-green-50 rounded-lg border-2 border-green-500">
-                        <h4 class="text-xl font-bold text-green-700 mb-2">Success! Check Your Inbox!</h4>
-                        <p class="text-sm text-green-600 leading-snug">The template is on its way. Please check your spam folder if you don't see it!</p>
-                        <svg class="w-8 h-8 mx-auto mt-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-
-
                 </div>
-                <!-- END: MAILERLITE FORM INTEGRATION -->
-
-
-            </div>
+                </div>
         </div>
     </section> 
 
 
-    <!-- 3. MAIN HERO AND VALUE PROPOSITION -->
     <section class="py-16 md:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
@@ -184,7 +248,6 @@ effective-legal-templates
 
 
             <div class="mb-12 flex justify-center space-x-4 flex-wrap">
-                <!-- UPDATED LINK -->
                 <a href="https://payhip.com/b/ofAGu" class="bg-indigo-600 text-white text-xl font-extrabold py-4 px-8 rounded-xl hero-button hover:bg-indigo-700 transition duration-300 shadow-xl mb-4 sm:mb-0">
                     Buy The Full Bundle Now — $199
                 </a>
@@ -199,24 +262,20 @@ effective-legal-templates
     </section> 
 
 
-    <!-- 4. PAIN POINTS & PROBLEMS SOLVED -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">
                 If You Don't Have These Documents, You're Exposed.
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Pain Point 1 -->
                 <div class="p-6 bg-red-50 border-t-4 border-red-500 rounded-lg shadow-md hover:shadow-lg transition">
                     <h3 class="text-xl font-bold mb-3 text-red-700">Scope Creep & Endless Revisions</h3>
                     <p class="text-gray-600">The client demands "just one more thing," leading to 15 extra hours of unpaid work. The missing SOW is costing you **billable hours** every month.</p>
                 </div>
-                <!-- Pain Point 2 -->
                 <div class="p-6 bg-red-50 border-t-4 border-red-500 rounded-lg shadow-md hover:shadow-lg transition">
                     <h3 class="text-xl font-bold mb-3 text-red-700">Delayed or Ghosted Payments</h3>
                     <p class="text-gray-600">Your invoice is overdue. Without an MSA, you have no formal right to charge interest, pause work, or enforce collections without creating liability.</p>
                 </div>
-                <!-- Pain Point 3 -->
                 <div class="p-6 bg-red-50 border-t-4 border-red-500 rounded-lg shadow-md hover:shadow-lg transition">
                     <h3 class="text-xl font-bold mb-3 text-red-700">Losing IP Rights</h3>
                     <p class="text-gray-600">Clients claiming ownership of your underlying templates, code, or marketing processes. Generic contracts often fail to clearly define when **Intellectual Property** (IP) transfers.</p>
@@ -226,7 +285,6 @@ effective-legal-templates
     </section> 
 
 
-    <!-- 5. PRODUCT FEATURES - THE 4 TEMPLATES -->
     <section id="whats-inside" class="py-16 md:py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-extrabold text-center mb-16 text-gradient">
@@ -235,7 +293,6 @@ effective-legal-templates
 
 
             <div class="space-y-16">
-                <!-- Feature 1: MSA -->
                 <div class="flex flex-col md:flex-row items-center bg-white rounded-xl p-8 shadow-lg">
                     <div class="md:w-2/3 md:pr-12">
                         <p class="text-sm font-bold uppercase text-blue-600 mb-1">Document 1 / The Foundation</p>
@@ -248,13 +305,11 @@ effective-legal-templates
                         </ul>
                     </div>
                     <div class="md:w-1/3 mt-6 md:mt-0 fumes text-center">
-                        <!-- Placeholder Image: MSA Contract -->
                         <img src="https://placehold.co/250x150/1e40af/ffffff?text=MSA+Contract" alt="Master Service Agreement Icon" class="rounded-lg shadow-md mx-auto">
                     </div>
                 </div> 
 
 
-                <!-- Feature 2: SOW -->
                 <div class="flex flex-col md:flex-row-reverse items-center bg-white rounded-xl p-8 shadow-lg">
                     <div class="md:w-2/3 md:pl-12">
                         <p class="text-sm font-bold uppercase text-blue-600 mb-1">Document 2 / The Scope Shield</p>
@@ -267,13 +322,11 @@ effective-legal-templates
                         </ul>
                     </div>
                     <div class="md:w-1/3 mt-6 md:mt-0 text-center">
-                        <!-- Placeholder Image: SOW Template -->
                         <img src="https://placehold.co/250x150/10b981/ffffff?text=SOW+Template" alt="Statement of Work Icon" class="rounded-lg shadow-md mx-auto">
                     </div>
                 </div> 
 
 
-                <!-- Feature 3 & 4 (Combined) -->
                 <div class="flex flex-col md:flex-row items-center bg-white rounded-xl p-8 shadow-lg">
                     <div class="md:w-2/3 md:pr-12">
                         <p class="text-sm font-bold uppercase text-blue-600 mb-1">Documents 3 & 4 / The Safety Net</p>
@@ -285,7 +338,6 @@ effective-legal-templates
                         </ul>
                     </div>
                     <div class="md:w-1/3 mt-6 md:mt-0 text-center">
-                        <!-- Placeholder Image: NDA and Letter -->
                         <img src="https://placehold.co/250x150/f97316/ffffff?text=NDA+%26+Letter" alt="NDA and Letter Icon" class="rounded-lg shadow-md mx-auto">
                     </div>
                 </div>
@@ -294,24 +346,17 @@ effective-legal-templates
     </section> 
 
 
-    <!-- 6. FINAL CALL TO ACTION -->
-    <section class="py-20 md:py-24 bg-blue-700"> <!-- Increased base padding for safety -->
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-6"> <!-- Ensured responsive heading size -->
-                Stop Worrying About Legal Fees. Start Scaling.
+    <section class="py-20 md:py-24 bg-blue-700"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-6"> Stop Worrying About Legal Fees. Start Scaling.
             </h2>
-            <p class="text-lg sm:text-xl text-blue-100 mb-8"> <!-- Ensured responsive paragraph size -->
-                Your alternative is paying an attorney **$1,500+** to draft these documents from scratch, or using a generic, unsafe template. Get the professional system now.
+            <p class="text-lg sm:text-xl text-blue-100 mb-8"> Your alternative is paying an attorney **$1,500+** to draft these documents from scratch, or using a generic, unsafe template. Get the professional system now.
             </p>
-            <!-- UPDATED LINK -->
-            <a href="https://payhip.com/b/ofAGu" class="bg-yellow-400 text-lg sm:text-xl font-extrabold py-4 px-8 sm:px-10 rounded-xl hero-button hover:bg-yellow-300 transition duration-300 shadow-xl inline-block w-full max-w-sm sm:w-auto"> <!-- Ensured button scales gracefully on mobile -->
-                Get the Full Bundle Now — $199
+            <a href="https://payhip.com/b/ofAGu" class="bg-yellow-400 text-lg sm:text-xl font-extrabold py-4 px-8 sm:px-10 rounded-xl hero-button hover:bg-yellow-300 transition duration-300 shadow-xl inline-block w-full max-w-sm sm:w-auto"> Get the Full Bundle Now — $199
             </a>
         </div>
     </section> 
 
 
-    <!-- 7. FOOTER -->
     <footer class="py-6 bg-gray-900 text-center text-gray-400 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p>&copy; 2024 The SOW Standard. All Rights Reserved.</p>
@@ -320,8 +365,16 @@ effective-legal-templates
     </footer> 
 
 
-    <!-- CRITICAL: MAILERLITE SCRIPTS (Must be at the end of the body) -->
+    <script>
+        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+        ml('account', '1888149');
+    </script>
     <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+    <script>
+        fetch("https://assets.mailerlite.com/jsonp/1888149/forms/169746436193257031/takel")
+    </script>
 </body>
 </html>
-
